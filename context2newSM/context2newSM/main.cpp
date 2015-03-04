@@ -48,15 +48,15 @@ int main(int argc, char *argv[]){
 		exit(0);
 	}
 
-	int sign;
+	int sign = 0;
 	context = context * in_img->height; 
-	double R_context, L_context;
+	double R_context = context, L_context = context;
 	if(parse_info.L1-parse_info.L0 > parse_info.R1-parse_info.R0){
 		R_context = (context - parse_info.L0) * (parse_info.R1 - parse_info.R0) / (parse_info.L1 - parse_info.L0) + parse_info.R0;
 		L_context = context;
 		sign = 1;
 	}
-	else{
+	else if(parse_info.L1-parse_info.L0<parse_info.R1-parse_info.R0){
 		L_context = (context - parse_info.R0) * (parse_info.L1 - parse_info.L0) / (parse_info.R1 - parse_info.R0) + parse_info.L0;
 		R_context = context;
 		sign = -1;
@@ -71,6 +71,9 @@ int main(int argc, char *argv[]){
 				sigma = context_img->height * SD - context_img->height * SD / 3 * x/(double)in_img->width; //hama
 			}else if(sign==-1){
 				sigma = context_img->height * SD / 3 * ( 2 + x/(double)in_img->width); //hama
+			}
+			else{
+				sigma = context_img->height * SD;
 			}
 			cvImageElem<IPL_DEPTH_32F>(context_img, x, y, 0) = exp( -pow(y-mu_Y, 2) / (2 * pow(sigma, 2)) );
 		}

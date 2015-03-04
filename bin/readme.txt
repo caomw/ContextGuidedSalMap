@@ -1,4 +1,4 @@
-
+﻿
 	
 raw2transedImage-NonVP.exe
 	raw2transedImage-NonVP.exe xxx.jpg
@@ -37,7 +37,7 @@ context2newSM.exe
 	再加个参数s表示显示结果图片，作为单次测试使用
 
 getSM.py
-	调用context2newSM.exe，输入图片来自images原始图片，context与PersPram从contextWithPers.txt读取
+	调用context2newSM.exe，输入图片来自images原始图片，context与PersPram从contextWithPers.txt(修改为context.txt)读取
 	对每张图，输出sm,context,dst三个图到result_images目录
 
 ========================================
@@ -45,5 +45,5 @@ getSM.py
 	从images下的原始图片开始
 	运行getTransedImage.py手动对所有图片透视变换
 	运行getContexts.py获得模型预测的平均视线位置信息
-	运行contextpluspers.py合并context.txt与PersPram.csv
+	#忽略# 运行contextpluspers.py合并context.txt与PersPram.csv #原版Torralba model不需要pers矫正
 	运行getSM.py生成最终结果图

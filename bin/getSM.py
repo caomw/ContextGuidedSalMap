@@ -3,7 +3,8 @@
 
 import os
 
-mylist = open('contextWithPers.txt').readlines()
+#mylist = open('contextWithPers.txt').readlines() # No pers are needed
+mylist = open('context.txt').readlines()
 
 exename = 'context2newSM.exe'
 
@@ -11,10 +12,10 @@ for line in mylist:
 	tmp = line.strip().split(',')
 	imagefile = tmp[0]
 	context = tmp[1]
-	L0 = tmp[2]
-	L1 = tmp[3]
-	R0 = tmp[4]
-	R1 = tmp[5]
+	L0 = str(0) #tmp[2]
+	L1 = str(600) #tmp[3]
+	R0 = str(0) #tmp[4]
+	R1 = str(600) #tmp[5]
 	print imagefile
 	os.system(exename + ' ' + imagefile + ' ' + context + ' ' + L0 + ' ' + L1 +' '+R0+' '+R1)
 	os.rename("sm.jpg","result_images/sm_"+imagefile.split('\\')[-1])
